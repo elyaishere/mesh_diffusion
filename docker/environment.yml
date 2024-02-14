@@ -1,0 +1,25 @@
+name: mesh-diffusion
+channels:
+  - pytorch
+  - conda-forge
+  - open3d-admin
+  - rusty1s
+  - nvidia
+dependencies:
+  - pip=23.2.1
+  - python=3.11.4
+  - pytorch=2.0.1
+  - pytorch-cuda=11.8
+  - scipy=1.11.2
+  - torchvision=0.15.2
+  - tqdm=4.66.1
+  - numpy=1.26.0
+  - scipy=1.11.2
+  - matplotlib=3.8
+  - jupyter=1.0.0
+  - h5py=3.10.0
+  - Pillow=10.2.0
+  - meshplot
+  - k3d
+  - tqdm
+  

@@ -1,0 +1,3 @@
+wandb==0.16.2
+libigl
+ismember
