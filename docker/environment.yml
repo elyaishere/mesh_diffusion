@@ -21,5 +21,4 @@ dependencies:
   - Pillow=10.2.0
   - meshplot
   - k3d
-  - tqdm
   

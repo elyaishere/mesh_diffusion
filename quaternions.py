@@ -68,11 +68,6 @@ def spin_transform(mesh, phi):
     edges = np.unique(np.sort(mesh.halfedges, axis=1), axis=0)
     _, edges_halfedges = ismember(edges, mesh.halfedges, 'rows')
 
-    A = sp.sparse.csr_matrix((-np.ones_like(index_x, dtype=float), (index_x, index_y_minus)), shape=(edges.shape[0], mesh.num_vertices))
-    B = sp.sparse.csr_matrix((np.ones_like(index_x, dtype=float), (index_x, index_y_plus)), shape=(edges.shape[0], mesh.num_vertices))
-    matrix = A + B
-    matrix = matrix[:, :-1]
-
     index_x = range(edges.shape[0])
     index_y_minus = edges[:, 0]
     index_y_plus = edges[:, 1]
@@ -80,6 +75,12 @@ def spin_transform(mesh, phi):
     bx = f_edge[edges_halfedges,:,1]
     by = f_edge[edges_halfedges,:,2]
     bz = f_edge[edges_halfedges,:,3]
+
+    A = sp.sparse.csr_matrix((-np.ones_like(index_x, dtype=float), (index_x, index_y_minus)), shape=(edges.shape[0], mesh.num_vertices))
+    B = sp.sparse.csr_matrix((np.ones_like(index_x, dtype=float), (index_x, index_y_plus)), shape=(edges.shape[0], mesh.num_vertices))
+    matrix = A + B
+    matrix = matrix[:, :-1]
+
     x = sp.sparse.linalg.spsolve(matrix.T @ matrix, matrix.T @ bx)
     y = sp.sparse.linalg.spsolve(matrix.T @ matrix, matrix.T @ by)
     z = sp.sparse.linalg.spsolve(matrix.T @ matrix, matrix.T @ bz)
