@@ -73,7 +73,6 @@ ENV TORCH=2.1.1
 
 COPY --chown=user docker/requirements.txt /opt/requirements.txt
 RUN pip install -r /opt/requirements.txt
-RUN pip install 'git+https://github.com/facebookresearch/pytorch3d.git@stable'
 
 ENV WANDB_CACHE_DIR=/code/.cache/wandb
 ENV WANDB_CACHE_DIR=/code/.config/wandb

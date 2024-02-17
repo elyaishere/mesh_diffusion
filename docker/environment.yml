@@ -5,6 +5,9 @@ channels:
   - open3d-admin
   - rusty1s
   - nvidia
+  - pytorch3d
+  - fvcore
+  - iopath
 dependencies:
   - pip=23.2.1
   - python=3.11.4
@@ -21,4 +24,7 @@ dependencies:
   - meshplot
   - k3d
   - tqdm
+  - fvcore
+  - iopath
+  - pytorch3d
   
