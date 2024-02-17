@@ -47,7 +47,7 @@ ENV HOME=/home/user
 RUN chmod 777 /home/user
 
 ## Download and install miniconda
-RUN wget https://repo.continuum.io/miniconda/Miniconda3-py38_4.9.2-Linux-x86_64.sh -O ~/miniconda.sh \
+RUN wget https://repo.continuum.io/miniconda/Miniconda3-py311_23.11.0-2-Linux-x86_64.sh -O ~/miniconda.sh \
  && chmod +x ~/miniconda.sh \
  && ~/miniconda.sh -b -p ~/miniconda \
  && rm ~/miniconda.sh \
@@ -55,7 +55,6 @@ RUN wget https://repo.continuum.io/miniconda/Miniconda3-py38_4.9.2-Linux-x86_64.
 ENV PATH /home/user/miniconda/bin:$PATH
 ENV CONDA_AUTO_UPDATE_CONDA=false
 
-# Create a Python 3.8 environment.
 COPY --chown=user docker/environment.yml /opt/environment.yml
 RUN /home/user/miniconda/bin/conda install conda-build \
  && /home/user/miniconda/bin/conda env create -f /opt/environment.yml \
