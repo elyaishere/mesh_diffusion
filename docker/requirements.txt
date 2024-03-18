@@ -3,3 +3,4 @@ libigl
 ismember
 omegaconf
 visdom
+einops

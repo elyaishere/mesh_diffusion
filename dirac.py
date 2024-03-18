@@ -35,11 +35,10 @@ def dirac_operator_matrix(mesh):
 
 def dirac_sv(mesh, dirac_matrix, adj_matrix, eigen_num):
     m1 = 0.5 * adj_matrix.T @ dirac_matrix @ dirac_matrix.T @ adj_matrix
-    vertex_area = mesh.vertex_area()
-    m2 = sp.sparse.spdiags(np.tile(vertex_area.reshape(-1,1), (1,4)).flatten(), 0, (4*mesh.num_vertices,4*mesh.num_vertices))
+    m2 = sp.sparse.spdiags(np.tile(mesh.vertex_area.reshape(-1,1), (1,4)).flatten(), 0, (4*mesh.num_vertices,4*mesh.num_vertices))
     m1 = 0.5 * (m1 + m1.T)
     m2 = 0.5 * (m2 + m2.T)
-    eigen_v, eigen_f = sp.sparse.linalg.eigsh(m1, k=eigen_num, M=m2, which='SM')
+    eigen_v, eigen_f = sp.sparse.linalg.eigs(m1, k=eigen_num, M=m2, which='SM', tol=1e-1)
     return eigen_v, eigen_f
 
 
